@@ -72,22 +72,18 @@ You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Net-Disqus>
+=item * GitHub main branch
 
-=item * AnnoCPAN: Annotated CPAN documentation
+L<http://github.com/goozbach/perl-Net-Disqus/tree/master>
 
-L<http://annocpan.org/dist/Net-Disqus>
+=item * GitHub Issue Tracker
 
-=item * CPAN Ratings
+L<http://github.com/goozbach/perl-Net-Disqus/issues>
 
-L<http://cpanratings.perl.org/d/Net-Disqus>
+=item * GitHub Wiki
 
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Net-Disqus/>
-
+L<http://wiki.github.com/goozbach/perl-Net-Disqus>
 =back
 
 
