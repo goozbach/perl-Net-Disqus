@@ -1,11 +1,11 @@
-package Disqus::Thread;
+package Net::Disqus::Author;
 
 use warnings;
 use strict;
 
 =head1 NAME
 
-Disqus::Thread - The great new Disqus::Thread!
+Net::Disqus::Author - The great new Net::Disqus::Author!
 
 =head1 VERSION
 
@@ -22,15 +22,15 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    use Disqus::Thread;
+    use Net::Disqus::Author;
 
-    my $foo = Disqus::Thread->new();
+    my $foo = Net::Disqus::Author->new();
     ...
 
 =head1 FUNCTIONS
 
 =head2 new
-Create a new Disqus::Thread object
+Create a new Net::Disqus::Author object
 
 =cut
 
@@ -59,7 +59,7 @@ Base attrubutes, can be extended
 
 =head2 id
 
-Thread ID
+Author ID
 
 =cut
 sub id {
@@ -70,116 +70,21 @@ sub id {
         return $self->{'id'};
 }
 
-=head2 forum
-
-Thread Forum
-
-=cut
-sub forum {
-        my $self = shift;
-        if (@_) {
-        $self->{'forum'}= shift;
-        }
-        return $self->{'forum'};
-}
-
-=head2 slug
-
-Thread Slug
-
-=cut
-sub slug {
-        my $self = shift;
-        if (@_) {
-        $self->{'slug'}= shift;
-        }
-        return $self->{'slug'};
-}
-
-=head2 title
-
-Thread Title
-
-=cut
-sub title {
-        my $self = shift;
-        if (@_) {
-        $self->{'title'}= shift;
-        }
-        return $self->{'title'};
-}
-
-=head2 created_at
-
-Thread Created at Timestamp
-
-=cut
-sub created_at {
-        my $self = shift;
-        if (@_) {
-        $self->{'created_at'}= shift;
-        }
-        return $self->{'created_at'};
-}
-
-=head2 allow_comments
-
-Does the Thread Allow Comments
-
-=cut
-sub allow_comments {
-        my $self = shift;
-        if (@_) {
-        $self->{'allow_comments'}= shift;
-        }
-        return $self->{'allow_comments'};
-}
-
-=head2 url
-
-Thread URL
-
-=cut
-sub url {
-        my $self = shift;
-        if (@_) {
-        $self->{'url'}= shift;
-        }
-        return $self->{'url'};
-}
-
-=head2 identifier
-
-Thread Identifier
-
-=cut
-sub identifier {
-        my $self = shift;
-        if (@_) {
-        $self->{'identifier'}= shift;
-        }
-        return $self->{'identifier'};
-}
-
 =head1 AUTHOR
 
 Derek Carter, C<< <goozbach at friocorte.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-disqus-thread at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Disqus-Thread>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
+Please report any bugs or feature requests through L<http://github.com/goozbach/perl-Net-Disqus/issues>
+I will be notified, and then you'll automatically be notified of progress on your bug as I make changes.
 
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Disqus::Thread
-
+    perldoc Net::Disqus::Author
 
 You can also look for information at:
 
@@ -187,15 +92,15 @@ You can also look for information at:
 
 =item * GitHub main branch
 
-L<http://github.com/goozbach/perl-Disqus-Thread/tree/master>
+L<http://github.com/goozbach/perl-Net-Disqus/tree/master>
 
 =item * GitHub Issue Tracker
 
-L<http://github.com/goozbach/perl-Disqus-Thread/issues>
+L<http://github.com/goozbach/perl-Net-Disqus/issues>
 
 =item * GitHub Wiki
 
-L<http://wiki.github.com/goozbach/perl-Disqus-Thread>
+L<http://wiki.github.com/goozbach/perl-Net-Disqus>
 
 =back
 
@@ -222,4 +127,4 @@ later version, or
 
 =cut
 
-1; # End of Disqus::Thread
+1; # End of Disqus::Author

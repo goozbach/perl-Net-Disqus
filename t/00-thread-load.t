@@ -3,12 +3,12 @@
 use Test::More tests => 18;
 
 BEGIN {
-	use_ok( 'Disqus::Thread' );
+	use_ok( 'Net::Disqus::Thread' );
 }
 
-diag( "Testing Disqus::Thread $Disqus::Thread::VERSION, Perl $], $^X" );
+diag( "Testing Net::Disqus::Thread $Net::Disqus::Thread::VERSION, Perl $], $^X" );
 
-my $thread = Disqus::Thread -> new ( id => 10110,
+my $thread = Net::Disqus::Thread -> new ( id => 10110,
                                     forum => 'myforum',
                                     slug => 'myslug',
                                     title => 'mytitle',
@@ -19,7 +19,7 @@ my $thread = Disqus::Thread -> new ( id => 10110,
                                   );
 
 # test obj type
-isa_ok ( $thread, 'Disqus::Thread' );
+isa_ok ( $thread, 'Net::Disqus::Thread' );
 # test obj methods (read)
 is ( $thread->id(), 10110, 'ID method returns value properly');
 is ( $thread->forum(), 'myforum', 'Forum method returns value properly');

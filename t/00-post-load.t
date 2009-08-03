@@ -3,7 +3,7 @@
 use Test::More tests => 1;
 
 BEGIN {
-	use_ok( 'Disqus::Post' );
+	use_ok( 'Net::Disqus::Post' );
 }
 
-diag( "Testing Disqus::Post $Disqus::Post::VERSION, Perl $], $^X" );
+diag( "Testing Net::Disqus::Post $Net::Disqus::Post::VERSION, Perl $], $^X" );

@@ -1,11 +1,11 @@
-package Disqus::Post;
+package Net::Disqus::Post;
 
 use warnings;
 use strict;
 
 =head1 NAME
 
-Disqus::Post - The great new Disqus::Post!
+Net::Disqus::Post - The great new Net::Disqus::Post!
 
 =head1 VERSION
 
@@ -22,9 +22,9 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    use Disqus::Post;
+    use Net::Disqus::Post;
 
-    my $foo = Disqus::Post->new();
+    my $foo = Net::Disqus::Post->new();
     ...
 
 =head1 EXPORT
@@ -54,18 +54,15 @@ Derek Carter, C<< <goozbach at friocorte.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-disqus-post at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Disqus-Post>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
+Please report any bugs or feature requests through L<http://github.com/goozbach/perl-Net-Disqus/issues>.
+I will be notified, and then you'll automatically be notified of progress on your bug as I make changes.
 
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Disqus::Post
+    perldoc Net::Disqus::Post
 
 
 You can also look for information at:
@@ -74,15 +71,15 @@ You can also look for information at:
 
 =item * GitHub main branch
 
-L<http://github.com/goozbach/perl-Disqus-Post/tree/master>
+L<http://github.com/goozbach/perl-Net-Disqus/tree/master>
 
 =item * GitHub Issue Tracker
 
-L<http://github.com/goozbach/perl-Disqus-Post/issues>
+L<http://github.com/goozbach/perl-Net-Disqus/issues>
 
 =item * GitHub Wiki
 
-L<http://wiki.github.com/goozbach/perl-Disqus-Post>
+L<http://wiki.github.com/goozbach/perl-Net-Disqus>
 
 =back
 
@@ -109,4 +106,4 @@ later version, or
 
 =cut
 
-1; # End of Disqus::Post
+1; # End of Net::Disqus::Post

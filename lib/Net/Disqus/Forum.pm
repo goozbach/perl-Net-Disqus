@@ -1,11 +1,11 @@
-package Disqus::Forum;
+package Net::Disqus::Forum;
 
 use warnings;
 use strict;
 
 =head1 NAME
 
-Disqus::Forum - The great new Disqus::Forum!
+Net::Disqus::Forum - The great new Net::Disqus::Forum!
 
 =head1 VERSION
 
@@ -22,19 +22,20 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    use Disqus::Forum;
+    use Net::Disqus::Forum;
 
-    my $foo = Disqus::Forum->new();
+    my $foo = Net::Disqus::Forum->new();
     ...
 
 =head1 Data Model
 
-There are three types of Disqus objects that the API provides access to:
+There are four types of Disqus objects that the API provides access to:
 They map to the following Perl objects.
 
-posts -- Disqus::Post
-threads -- Disqus::Thread
-forums -- Disqus::Forum
+posts -- Net::Disqus::Post
+threads -- Net::Disqus::Thread
+forums -- Net::Disqus::Forum
+author -- Net::Disqus::Autor
 
 A post is any comment written by a Disqus user.
 
@@ -50,7 +51,7 @@ own thread.
 =head1 FUNCTIONS
 
 =head2 new
-Create a new Disqus::Forum object
+Create a new Net::Disqus::Forum object
 
 =cut
 
@@ -120,10 +121,8 @@ Derek Carter, C<< <goozbach at friocorte.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-disqus-forum at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Disqus-Forum>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
+Please report any bugs or feature requests through L<http://github.com/goozbach/perl-Net-Disqus/issues>
+I will be notified, and then you'll automatically be notified of progress on your bug as I make changes.
 
 
 
@@ -131,8 +130,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Disqus::Forum
-
+    perldoc Net::Disqus::Forum
 
 You can also look for information at:
 
@@ -140,15 +138,15 @@ You can also look for information at:
 
 =item * The GIThub page for this module
 
-L<http://github.com/goozbach/perl-Disqus-Forum/tree/master>
+L<http://github.com/goozbach/perl-Net-Disqus/tree/master>
 
 =item * GitHub Issue Tracker
 
-L<http://github.com/goozbach/perl-Disqus-Forum/issues>
+L<http://github.com/goozbach/perl-Net-Disqus/issues>
 
 =item * GitHub Wiki
 
-L<http://wiki.github.com/goozbach/perl-Disqus-Forum>
+L<http://wiki.github.com/goozbach/perl-Net-Disqus>
 
 =back
 
@@ -175,4 +173,4 @@ later version, or
 
 =cut
 
-1; # End of Disqus::Forum
+1; # End of Net::Disqus::Forum
