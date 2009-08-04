@@ -1,0 +1,175 @@
+Installing Net::Disqus
+    To install this module, run the following commands:
+
+            perl Makefile.PL
+            make
+            make test
+            make install
+
+Disqus Data Model
+    There are four types of Disqus Objects each with a corresponding Perl
+    object:
+
+  Posts -- Net::Disqus::Post
+      Any comment written by a Disqus User. Each post belongs to a thread.
+
+  Threads -- Net::Disqus::Thread
+      A collection of Posts about a certian topic (A specific blog post for example).
+      Each Thread Belongs to a Forum.
+
+  Forums -- Net::Disqus::Forum
+      A single website which uses Disqus. 
+      
+  For example: Your blog would be a Forum. Each post on your blog would have an associated Thread made up of Posts.
+
+  Author -- Net::Disqus::Forum
+      An Author which has written a post. There are two types of authors:
+
+    * An authenticated author
+
+    * An anonymous author
+
+Disqus API Keys
+    There are two types of API keys:
+
+  User API Key
+    Unique to each Disqus account. If a user is logged in they can find
+    their "user_api_key" by visiting <http://disqus.com/api/get_my_key/>.
+    You need to keep this key safe.
+
+  Forum API Key
+    Each Forum(site) has a "forum_api_key". The creator of a forum can get
+    their key using the "get_forum_api_key" method call. This should be
+    stored in a config file which is well protected.
+
+API Methods
+  "create_post"
+    * Method -- POST
+
+    * Key -- Forum Key
+
+   Arguments
+    * Required
+
+      *   "thread_id" -- The ID of the thread to create the post on.
+
+      *   "message" -- The message of the post.
+
+      *   "author_name" -- The creator's name.
+
+      *   "author_email" -- The creator's email address.
+
+    * Optional
+
+      *   "parent_post" -- The ID of the parent post, for threaded comments.
+
+      *   "created_at" -- The time the post was created. in format:
+          %Y-%m-%dT%H:%M. If ommited the current time will be used
+
+      *   "author_url" -- The author's homepage
+
+      *   "ip_address" -- The author's IP address
+
+   Returns
+    On success, the Net::Disqus::Post object just created.
+
+  "get_forum_list"
+    * Method -- GET
+
+    * Key -- The user's "user_api_key"
+
+   Arguments
+    None
+
+   Returns
+    A list of "Net::Disqus::Forum objects" the user owns.
+
+  "get_forum_api_key"
+    * Method -- GET
+
+    * Key -- The user's "user_api_key"
+
+   Arguments
+    * Required
+
+      *   "forum_id" -- The ID of the forum being requested.
+
+   Returns
+    a string containing the forum key.
+
+  "get_thread_list"
+    * Method -- GET
+
+    * Key -- Forum Key
+
+    * Key -- The user's "user_api_key"
+
+   Arguments
+    None
+
+   Returns
+    A list of Net::Disqus::Thread objects belonging to the given forum.
+
+  "get_num_posts"
+    * Method -- GET
+
+    * Key -- Forum Key
+
+    * Key -- The user's "user_api_key"
+
+   Arguments
+    * Required
+
+      *   "thread_ids" -- A comma delimited list of thread IDs belonging to
+          the forum.
+
+   Returns
+    An pseudo object mapping each "thread_id" to two numbers: visible
+    comments, total comments.
+
+  "get_thread_by_url"
+    * Method -- GET
+
+    * Key -- Forum Key
+
+    * Key -- The user's "user_api_key"
+
+   Arguments
+    * Required
+
+      *   "url" -- The url to check for a thread. --TODO discover if URI
+          encoded or not.
+
+   Returns
+    * On Success -- A Net::Disqus::Thread object.
+
+    * On Failure -- NULL
+
+  "get_thread_posts"
+    * Method -- GET
+
+    * Key -- Forum Key
+
+    * Key -- The user's "user_api_key"
+
+   Arguments
+    * Required
+
+      *   "thread_id" -- The ID of the thread for which you are requesting
+          the posts.
+
+   Returns
+    A list of Net::Disqus::Post objects for the given thread/forum.
+
+  "thread_by_identifier"
+    * Method -- POST
+
+    * Key -- Forum Key
+
+    * Key -- The user's "user_api_key"
+
+   Arguments
+    * Required
+
+      *
+
