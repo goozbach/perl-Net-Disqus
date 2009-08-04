@@ -1,18 +1,4 @@
-Net-Disqus
-
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
-
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
-
-
-INSTALLATION
+=head1  Installing Net::Disqus
 
 To install this module, run the following commands:
 
@@ -21,32 +7,285 @@ To install this module, run the following commands:
 	make test
 	make install
 
-SUPPORT AND DOCUMENTATION
+=head1  Disqus Data Model
 
-After installing, you can find documentation for this module with the
-perldoc command.
+There are four types of Disqus Objects each with a corresponding Perl object:
 
-    perldoc Net::Disqus
+=head2 Posts -- L<Net::Disqus::Post>
 
-You can also look for information at:
+  Any comment written by a Disqus User. Each post belongs to a thread.
 
-    RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Net-Disqus
+=head2 Threads -- L<Net::Disqus::Thread>
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Net-Disqus
+  A collection of Posts about a certian topic (A specific blog post for example).
+  Each Thread Belongs to a Forum.
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Net-Disqus
+=head2 Forums -- L<Net::Disqus::Forum>
 
-    Search CPAN
-        http://search.cpan.org/dist/Net-Disqus/
+  A single website which uses Disqus. 
+  
+  For example: Your blog would be a Forum. Each post on your blog would have an associated Thread made up of Posts.
+
+=head2 Author -- L<Net::Disqus::Forum>
+
+  An Author which has written a post. There are two types of authors: 
+
+=over 2
+
+=item * An authenticated author
+
+=item * An anonymous author
+
+=back
+
+=head1  Disqus API Keys
 
 
-COPYRIGHT AND LICENCE
+There are two types of API keys:
 
-Copyright (C) 2009 Derek Carter
+=head2 User API Key
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+Unique to each Disqus account.
+If a user is logged in they can find their C<user_api_key> by visiting L<http://disqus.com/api/get_my_key/>. You need to keep this key safe.
 
+=head2 Forum API Key
+
+Each Forum(site) has a C<forum_api_key>. The creator of a forum can get their key using the C<get_forum_api_key> method call. This should be stored in a config file which is well protected.
+
+=head1  API Methods
+
+=head2 C<create_post>
+
+=over 2
+
+=item * Method -- POST
+
+=item * Key -- Forum Key
+
+=back 
+
+=head3 Arguments
+
+=over 2
+
+=item * Required
+
+=over 4
+
+=item * C<thread_id> -- The ID of the thread to create the post on.
+
+=item * C<message> -- The message of the post.
+
+=item * C<author_name> -- The creator's name.
+
+=item * C<author_email> -- The creator's email address.
+
+=back
+
+=item * Optional
+
+=over 4
+
+=item * C<parent_post> -- The ID of the parent post, for threaded comments.
+
+=item * C<created_at> -- The time the post was created. in format: %Y-%m-%dT%H:%M. If ommited the current time will be used
+
+=item * C<author_url> -- The author's homepage
+
+=item * C<ip_address> -- The author's IP address
+
+=back
+
+=back
+
+=head3 Returns
+
+On success, the L<Net::Disqus::Post> object just created.
+
+=head2 C<get_forum_list>
+
+=over 2
+
+=item * Method -- GET
+
+=item * Key -- The user's C<user_api_key>
+
+=back
+
+=head3 Arguments
+
+None
+
+=head3 Returns
+
+A list of L<Net::Disqus::Forum objects> the user owns.
+
+=head2 C<get_forum_api_key>
+
+=over 2
+
+=item * Method -- GET
+
+=item * Key -- The user's C<user_api_key>
+
+=back
+
+=head3 Arguments
+
+=over 2
+
+=item * Required
+
+=over 4
+
+=item * C<forum_id> -- The ID of the forum being requested.
+
+=back
+
+=back
+
+=head3 Returns
+
+a string containing the forum key.
+
+=head2 C<get_thread_list>
+
+=over 2
+
+=item * Method -- GET
+
+=item * Key -- Forum Key
+
+=item * Key -- The user's C<user_api_key>
+
+=back
+
+=head3 Arguments
+
+None
+
+=head3 Returns
+
+A list of L<Net::Disqus::Thread> objects belonging to the given forum.
+
+=head2 C<get_num_posts>
+
+=over 2
+
+=item * Method -- GET
+
+=item * Key -- Forum Key
+
+=item * Key -- The user's C<user_api_key>
+
+=back
+
+=head3 Arguments
+
+=over 2
+
+=item * Required
+
+=over 4
+
+=item * C<thread_ids> -- A comma delimited list of thread IDs belonging to the forum.
+
+=back 
+
+=back
+
+=head3 Returns
+
+An pseudo object mapping each C<thread_id> to two numbers: visible comments, total comments.
+
+=head2 C<get_thread_by_url>
+
+=over 2
+
+=item * Method -- GET
+
+=item * Key -- Forum Key
+
+=item * Key -- The user's C<user_api_key>
+
+=back
+
+=head3 Arguments
+
+=over 2
+
+=item * Required
+
+=over 4
+
+=item * C<url> -- The url to check for a thread. --TODO discover if URI encoded or not.
+
+=back
+
+=back
+
+=head3 Returns
+
+=over 2
+
+=item * On Success -- A L<Net::Disqus::Thread> object.
+
+=item * On Failure -- NULL
+
+=back
+
+=head2 C<get_thread_posts>
+
+=over 2
+
+=item * Method -- GET
+
+=item * Key -- Forum Key
+
+=item * Key -- The user's C<user_api_key>
+
+=back
+
+=head3 Arguments
+
+=over 2
+
+=item * Required
+
+=over 4
+
+=item * C<thread_id> -- The ID of the thread for which you are requesting the posts.
+
+=back
+
+=back
+
+=head3 Returns
+
+A list of L<Net::Disqus::Post> objects for the given thread/forum.
+
+=head2 C<thread_by_identifier>
+
+=over 2
+
+=item * Method -- POST
+
+=item * Key -- Forum Key
+
+=item * Key -- The user's C<user_api_key>
+
+=back
+
+=head3 Arguments
+
+=over 2
+
+=item * Required
+
+=over 4
+
+=item * 
+
+=back
+
+=back

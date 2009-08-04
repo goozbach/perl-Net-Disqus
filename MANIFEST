@@ -2,7 +2,16 @@ Changes
 MANIFEST
 Makefile.PL
 README
+INSTALL
 lib/Net/Disqus.pm
+lib/Net/Disqus/Author.pm
+lib/Net/Disqus/Forum.pm
+lib/Net/Disqus/Post.pm
+lib/Net/Disqus/Thread.pm
 t/00-load.t
+t/00-author-load.t
+t/00-forum-load.t
+t/00-post-load.t
+t/00-thread-load.t
 t/pod-coverage.t
 t/pod.t
