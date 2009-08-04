@@ -403,7 +403,24 @@ An pseudo object with two keys:
 
 =back
 
+
+=head2 Anonymous Author -- L<Net::Disqus::Author>
+
+=head3 Attributes
+
+=over 2
+
+=item * C<name> the display name of the commenter
+
+=item * C<url> their optionally provided homepage
+
+=item * C<email_hash> md5 of the author's email address 
+
+=back
+
 =head2 Authenticated Author -- L<Net::Disqus::Author::Authenticated>
+
+Extends L<Net::Disqus::Author>
 
 =head3 Attributes
 
@@ -420,19 +437,5 @@ An pseudo object with two keys:
 =item * C<email_hash> md5 of the author's email address
 
 =item * C<has_avatar> whether the user has an avatar on disqus.com 
-
-=back
-
-=head2 Anonymous Author -- L<Net::Disqus::Author::Anonymous>
-
-=head3 Attributes
-
-=over 2
-
-=item * C<name> the display name of the commenter
-
-=item * C<url> their optionally provided homepage
-
-=item * C<email_hash> md5 of the author's email address 
 
 =back
