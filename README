@@ -7,7 +7,7 @@ Documentation
 
     * INSTALL -- This file provides the installation instructions.
 
-    * Each module, and sub-module's perldoc page describes the corresponding piece.
+    * Each module, and sub-module's perldoc page describes the corresponding piece of the overall architecture.
 
       * perldoc Net::Disqus
 
