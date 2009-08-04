@@ -84,6 +84,7 @@ L<http://github.com/goozbach/perl-Net-Disqus/issues>
 =item * GitHub Wiki
 
 L<http://wiki.github.com/goozbach/perl-Net-Disqus>
+
 =back
 
 
