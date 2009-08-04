@@ -1,12 +1,3 @@
-=head1  Installing Net::Disqus
-
-To install this module, run the following commands:
-
-	perl Makefile.PL
-	make
-	make test
-	make install
-
 =head1  Disqus Data Model
 
 There are four types of Disqus Objects each with a corresponding Perl object:
@@ -284,8 +275,60 @@ A list of L<Net::Disqus::Post> objects for the given thread/forum.
 
 =over 4
 
-=item * 
+=item * C<title> -- The title of the thread to possibly be created
+
+=item * C<identifier> -- A string of your choosing
 
 =back
+
+=back
+
+=head3 Returns
+
+An pseudo object with two keys: 
+
+=over 2
+
+=item * C<thread> -- The Net::Disqus::Thread object corresponding to the identifier
+
+=item * C<created> -- A boolean which indicates whether the thread was created as a result of this method call. If created, it will have the specified title.
+
+=back
+
+=head2 C<update_thread>
+
+=over 2
+
+=item * Method -- POST
+
+=item * Key -- Forum Key
+
+=item * Key -- The user's C<user_api_key>
+
+=back
+
+=head3 Arguments
+
+=over 2
+
+=item * Required
+
+=over 4
+
+=item * C<thread_id> -- The title of the thread to possibly be created
+
+=back
+
+=item * Optional -- Any of:
+
+=over 4
+
+=item * C<title> -- update the title attribute of the thread
+
+=item * C<slug> -- update the slug attribute of the thread
+
+=item * C<url> -- update the url attribute of the thread
+
+=item * C<allow_comments> -- update the allow_comments attribute of the thread
 
 =back
