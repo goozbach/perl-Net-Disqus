@@ -332,3 +332,28 @@ An pseudo object with two keys:
 =item * C<allow_comments> -- update the allow_comments attribute of the thread
 
 =back
+
+=back 
+
+=head1 Object Definitions
+
+=head2 Posts -- L<Net::Disqus::Post>
+
+=head3 Attributes
+
+=head2 Threads -- L<Net::Disqus::Thread>
+
+=head3 Attributes
+
+=head2 Forums -- L<Net::Disqus::Forum>
+
+=head3 Attributes
+
+=head2 Authenticated Author -- L<Net::Disqus::Author>
+
+=head3 Attributes
+
+=head2 Anonymous Author -- L<Net::Disqus::Author>
+
+=head3 Attributes
+
