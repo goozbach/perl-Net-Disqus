@@ -5,7 +5,7 @@ use strict;
 
 =head1 NAME
 
-Net::Disqus::Forum - The great new Net::Disqus::Forum!
+Net::Disqus::Forum - The OOP object for Net::Disqus Forum objects.
 
 =head1 VERSION
 
@@ -18,34 +18,11 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
     use Net::Disqus::Forum;
 
     my $foo = Net::Disqus::Forum->new();
     ...
 
-=head1 Data Model
-
-There are four types of Disqus objects that the API provides access to:
-They map to the following Perl objects.
-
-posts -- Net::Disqus::Post
-threads -- Net::Disqus::Thread
-forums -- Net::Disqus::Forum
-author -- Net::Disqus::Autor
-
-A post is any comment written by a Disqus user.
-
-Each post belongs to a thread, which represents a particular
-topic of conversation.
-
-Each thread belongs to a forum.
-A forum represents a website that is using Disqus. For example, your
-blog might constitute a single forum, and each blog post would have its
-own thread.
 
 
 =head1 FUNCTIONS
@@ -75,7 +52,7 @@ Basic attrubutes. Each has a corresponding update function.
 
 =head2 id
 
-Forum ID
+  A unique alphanumeric string identifying this Forum object.
 
 =cut
 sub id {
@@ -89,7 +66,7 @@ sub id {
 
 =head2 shortname
 
-Forum shortname
+  The unique string used in disqus.com URLs relating to this forum. For example, if the shortname is "bmb", the forum's community page is at http://bmb.disqus.com/.
 
 =cut
 sub shortname {
@@ -103,7 +80,7 @@ sub shortname {
 
 =head2 name
 
-Forum name
+  A string for displaying the forum's full title, like "The Eyeball Kid's Blog". 
 
 =cut
 sub name {
