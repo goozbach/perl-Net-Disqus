@@ -18,7 +18,6 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-
     use Net::Disqus::Author;
 
     my $foo = Net::Disqus::Author->new(
@@ -33,6 +32,7 @@ our $VERSION = '0.01';
 =head1 FUNCTIONS
 
 =head2 new
+
 Create a new Net::Disqus::Author object
 
 =cut
