@@ -76,7 +76,7 @@ sub id {
   the author's username
 
 =cut
-sub id {
+sub username {
         my $self = shift;
         if (@_) {
         $self->{'username'}= shift;
@@ -89,7 +89,7 @@ sub id {
   the author's full name, if provided
 
 =cut
-sub id {
+sub display_name {
         my $self = shift;
         if (@_) {
         $self->{'display_name'}= shift;
@@ -102,7 +102,7 @@ sub id {
   their optionally provided homepage
 
 =cut
-sub id {
+sub url {
         my $self = shift;
         if (@_) {
         $self->{'url'}= shift;
@@ -115,7 +115,7 @@ sub id {
   md5 of the author's email address
 
 =cut
-sub id {
+sub email_hash {
         my $self = shift;
         if (@_) {
         $self->{'email_hash'}= shift;
@@ -128,7 +128,7 @@ sub id {
   whether the user has an avatar on disqus.com 
 
 =cut
-sub id {
+sub has_avatar {
         my $self = shift;
         if (@_) {
         $self->{'has_avatar'}= shift;

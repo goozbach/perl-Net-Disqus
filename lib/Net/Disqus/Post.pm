@@ -28,7 +28,7 @@ our $VERSION = '0.01';
         message           => 'first post',
         parent_post       => 10100,
         shown             => 1,
-        is_anonymous      => false,
+        is_anonymous      => 0,
         anonymous_author  => Net::Disqus::Author object,
         author            => Net::Disqus::Author object,
        );
@@ -54,7 +54,7 @@ sub new {
         message           => 'first post',
         parent_post       => 10100,
         shown             => 1,
-        is_anonymous      => false,
+        is_anonymous      => 0,
         anonymous_author  => '',
         author            => '',
         @_, # override attributes
