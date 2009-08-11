@@ -8,7 +8,8 @@ lib/Net/Disqus/Author.pm
 lib/Net/Disqus/Forum.pm
 lib/Net/Disqus/Post.pm
 lib/Net/Disqus/Thread.pm
-t/00-load.t
+t/10-main.t
+t/boilerplate.t
 t/00-author-load.t
 t/00-forum-load.t
 t/00-post-load.t

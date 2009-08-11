@@ -7,7 +7,7 @@ BEGIN {
 	use_ok( 'Net::Disqus::Author' );
 }
 
-diag( "Testing Net::Disqus::Post $Net::Disqus::Post, Perl $], $^X" );
+diag( "Testing Net::Disqus::Post $Net::Disqus::Post::VERSION, Perl $], $^X" );
 
 my $user = Net::Disqus::Author -> new ( id => 10110,
                                     username => 'myusername',
