@@ -28,6 +28,7 @@ our $VERSION = '0.01';
 =head1 FUNCTIONS
 
 =head2 new
+
 Create a new Net::Disqus::Forum object
 
 =cut
@@ -140,9 +141,7 @@ modify it under the terms of either:
 
 =over 4
 
-=item * the GNU General Public License as published by the Free
-Software Foundation; either version 1, or (at your option) any
-later version, or
+=item * the GNU General Public License as published by the Free Software Foundation; either version 1, or (at your option) any later version, or
 
 =item * the Artistic License version 2.0.
 

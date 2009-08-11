@@ -5,7 +5,7 @@ use strict;
 
 =head1 NAME
 
-Net::Disqus::Thread - The great new Net::Disqus::Thread!
+Net::Disqus::Thread - The OOP object for Net::Disqus Thread Objects
 
 =head1 VERSION
 
@@ -18,18 +18,24 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
     use Net::Disqus::Thread;
 
-    my $foo = Net::Disqus::Thread->new();
-    ...
+    my $foo = Net::Disqus::Thread->new(
+        id              => 101001,
+        forum           => 2342443,
+        slug            => 'this is a thread slug',
+        title           => 'The Thread!',
+        created_at      => '1990-01-01T14:31',
+        allow_comments  => 1,
+        url             => 'http://www.example.com/the_thread',
+        identifier      => 'my_the-thread_id',
+    );
+
 
 =head1 FUNCTIONS
 
 =head2 new
+
 Create a new Net::Disqus::Thread object
 
 =cut
@@ -59,7 +65,7 @@ Base attrubutes, can be extended
 
 =head2 id
 
-Thread ID
+  a unique alphanumeric string identifying this Thread object.
 
 =cut
 sub id {
@@ -72,7 +78,7 @@ sub id {
 
 =head2 forum
 
-Thread Forum
+  The id for the forum this thread belongs to.
 
 =cut
 sub forum {
@@ -85,7 +91,7 @@ sub forum {
 
 =head2 slug
 
-Thread Slug
+  The per-forum-unique string used for identifying this thread in disqus.com URLs relating to this thread. Composed of underscore-separated alphanumeric strings.
 
 =cut
 sub slug {
@@ -98,7 +104,7 @@ sub slug {
 
 =head2 title
 
-Thread Title
+  The title of the thread.
 
 =cut
 sub title {
@@ -111,7 +117,7 @@ sub title {
 
 =head2 created_at
 
-Thread Created at Timestamp
+  The UTC date this thread was created, in the format %Y-%m-%dT%H:%M.
 
 =cut
 sub created_at {
@@ -124,7 +130,7 @@ sub created_at {
 
 =head2 allow_comments
 
-Does the Thread Allow Comments
+  Whether this thread is open to new comments.
 
 =cut
 sub allow_comments {
@@ -137,7 +143,7 @@ sub allow_comments {
 
 =head2 url
 
-Thread URL
+  The URL this thread is on, if known.
 
 =cut
 sub url {
@@ -150,7 +156,7 @@ sub url {
 
 =head2 identifier
 
-Thread Identifier
+  The user-provided identifier for this thread, as in thread_by_identifier above (if available) 
 
 =cut
 sub identifier {
@@ -209,9 +215,7 @@ modify it under the terms of either:
 
 =over 4
 
-=item * the GNU General Public License as published by the Free
-Software Foundation; either version 1, or (at your option) any
-later version, or
+=item * the GNU General Public License as published by the Free Software Foundation; either version 1, or (at your option) any later version, or
 
 =item * the Artistic License version 2.0.
 
