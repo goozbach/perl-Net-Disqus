@@ -8,7 +8,7 @@ BEGIN {
 
 diag( "Testing Net::Disqus::Thread $Net::Disqus::Thread::VERSION, Perl $], $^X" );
 
-my $thread = Net::Disqus::Thread -> new ( id => 10110,
+my $obj = Net::Disqus::Thread -> new ( id => 10110,
                                     forum => 'myforum',
                                     slug => 'myslug',
                                     title => 'mytitle',
@@ -19,31 +19,31 @@ my $thread = Net::Disqus::Thread -> new ( id => 10110,
                                   );
 
 # test obj type
-isa_ok ( $thread, 'Net::Disqus::Thread' );
+isa_ok ( $obj, 'Net::Disqus::Thread' );
 # test obj methods (read)
-is ( $thread->id(), 10110, 'ID method returns value properly');
-is ( $thread->forum(), 'myforum', 'Forum method returns value properly');
-is ( $thread->slug(), 'myslug', 'Slug method returns value properly');
-is ( $thread->title(), 'mytitle', 'Title method returns value properly');
-is ( $thread->created_at(), 'DATETIME', 'Created At method returns value properly');
-is ( $thread->allow_comments(), 0, 'Allow Comments method returns value properly');
-is ( $thread->url(), 'myurl', 'URL method returns value properly');
-is ( $thread->identifier(), 'myidentifier', 'Identifier method returns value properly');
+is ( $obj->id(), 10110, 'ID method returns value properly');
+is ( $obj->forum(), 'myforum', 'Forum method returns value properly');
+is ( $obj->slug(), 'myslug', 'Slug method returns value properly');
+is ( $obj->title(), 'mytitle', 'Title method returns value properly');
+is ( $obj->created_at(), 'DATETIME', 'Created At method returns value properly');
+is ( $obj->allow_comments(), 0, 'Allow Comments method returns value properly');
+is ( $obj->url(), 'myurl', 'URL method returns value properly');
+is ( $obj->identifier(), 'myidentifier', 'Identifier method returns value properly');
 
 # test object methods (write)
-$thread->id(12345);
-$thread->forum('newforum');
-$thread->slug('newslug');
-$thread->title('newtitle');
-$thread->created_at('newtime');
-$thread->allow_comments(1);
-$thread->url('newurl');
-$thread->identifier('newidentifier');
-is ( $thread->id(), 12345, 'ID method sets and reads properly');
-is ( $thread->forum(), 'newforum', 'Forum method sets and reads properly');
-is ( $thread->slug(), 'newslug', 'Slug method sets and reads properly');
-is ( $thread->title(), 'newtitle', 'Title method sets and reads properly');
-is ( $thread->created_at(), 'newtime', 'Created At method sets and reads properly');
-is ( $thread->allow_comments(), 1, 'Allow Comments method sets and reads properly');
-is ( $thread->url(), 'newurl', 'URL method sets and reads properly');
-is ( $thread->identifier(), 'newidentifier', 'Identifier method sets and reads properly');
+$obj->id(12345);
+$obj->forum('newforum');
+$obj->slug('newslug');
+$obj->title('newtitle');
+$obj->created_at('newtime');
+$obj->allow_comments(1);
+$obj->url('newurl');
+$obj->identifier('newidentifier');
+is ( $obj->id(), 12345, 'ID method sets and reads properly');
+is ( $obj->forum(), 'newforum', 'Forum method sets and reads properly');
+is ( $obj->slug(), 'newslug', 'Slug method sets and reads properly');
+is ( $obj->title(), 'newtitle', 'Title method sets and reads properly');
+is ( $obj->created_at(), 'newtime', 'Created At method sets and reads properly');
+is ( $obj->allow_comments(), 1, 'Allow Comments method sets and reads properly');
+is ( $obj->url(), 'newurl', 'URL method sets and reads properly');
+is ( $obj->identifier(), 'newidentifier', 'Identifier method sets and reads properly');
