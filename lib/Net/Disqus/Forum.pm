@@ -20,8 +20,11 @@ our $VERSION = '0.01';
 
     use Net::Disqus::Forum;
 
-    my $foo = Net::Disqus::Forum->new();
-    ...
+    my $foo = Net::Disqus::Forum->new(
+        id        => 12121,
+        shortname => 'dood-forum',
+        name      => 'Dood\'s Forum',
+       );
 
 
 

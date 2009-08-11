@@ -8,19 +8,24 @@ BEGIN {
 
 diag( "Testing Net::Disqus::Forum $Net::Disqus::Forum::VERSION, Perl $], $^X" );
 
-my $forum = Net::Disqus::Forum -> new ( id => 10110, shortname => 'myshortname', name => 'myname');
+my $obj = Net::Disqus::Forum -> new (
+                          id => 10110,
+                          shortname => 'myshortname',
+                          name => 'myname'
+                         );
 
 # test obj type
-isa_ok ( $forum, 'Net::Disqus::Forum' );
-# test obj methods (read)
-is ( $forum->id(), 10110, 'ID method returns value properly');
-is ( $forum->shortname(), 'myshortname', 'Shortname method returns value properly');
-is ( $forum->name(), 'myname', 'Name method returns value properly');
+isa_ok ( $obj, 'Net::Disqus::Forum' );
 
-# test object methods (write)
-$forum->id(12345);
-$forum->shortname('newshortname');
-$forum->name('newname');
-is ( $forum->id(), 12345, 'ID method sets and reads properly');
-is ( $forum->shortname(), 'newshortname', 'Shortname method sets and reads properly');
-is ( $forum->name(), 'newname', 'Name method sets and reads properly');
+# test each attribute is fetchable from a built object.
+is ( $obj->id(), 10110, 'ID method returns value properly');
+is ( $obj->shortname(), 'myshortname', 'Shortname method returns value properly');
+is ( $obj->name(), 'myname', 'Name method returns value properly');
+
+# reset each attribute and check again.
+$obj->id(12345);
+$obj->shortname('newshortname');
+$obj->name('newname');
+is ( $obj->id(), 12345, 'ID method sets and reads properly');
+is ( $obj->shortname(), 'newshortname', 'Shortname method sets and reads properly');
+is ( $obj->name(), 'newname', 'Name method sets and reads properly');
