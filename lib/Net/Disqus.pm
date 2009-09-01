@@ -46,7 +46,6 @@ sub _GET_request($) {
     my $message = $$response{'message'};
     croak "request failed: status=$status, code=$code, message=$message\n";
   }
-  return $response_object;
 }
 
 sub _POST_request($$) {
@@ -277,7 +276,13 @@ a string containing the forum key.
 
 =cut
 sub get_forum_api_key {
-
+  my $self = shift;
+  my $id = shift;
+  # GET the api url
+  my $api_method = 'get_forum_api_key';
+  my $request_url = $APIurl .  $api_method . '/?user_api_key=' . $self->user_api_key() . '&forum_id=' . $id;
+  my $forum_api_key = _GET_request($request_url);
+  return $forum_api_key;
 }
 
 =head2 get_thread_list
