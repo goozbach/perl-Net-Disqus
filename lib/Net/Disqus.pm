@@ -18,11 +18,9 @@ use Net::Disqus::Post;
 
 ## Debug imports
 use Data::Dumper;
+
 ## globals
 my $APIurl = 'http://disqus.com/api/';
-my $success;
-my $code;
-my $message;
 my $ua = LWP::UserAgent->new;
 my $user_api_key; #TODO get from config::simple?
 my $forum_api_key; #TODO get from config::simple?
@@ -33,17 +31,21 @@ sub _GET_request($) {
   # this code returns the json object after a GET request
   my $url = shift;
   my $response_object;
+  my $status;
+  my $success;
+  my $code;
+  my $message;
   my $response = $ua->request(GET $url);
   if ($response->is_success) {
     $response_object = JSON::Any->from_json($response->content());
     $message = $response_object->{'message'};
     return $message;
   } else {
-    my $status = $response->status_line();
-    my $response = JSON::Any->jsonToObj($response->content());
-    my $success = eval ($$response{'succeeded'});
-    my $code = $$response{'code'};
-    my $message = $$response{'message'};
+    $status = $response->status_line();
+    $response = JSON::Any->jsonToObj($response->content());
+    $success = eval ($$response{'succeeded'});
+    $code = $$response{'code'};
+    $message = $$response{'message'};
     croak "request failed: status=$status, code=$code, message=$message\n";
   }
 }
@@ -100,7 +102,7 @@ into my website instead of loading them via JavaScript
 
 =head2 new
 
-Create a new Net::Disqus::Author object
+Create a new Net::Disqus object
 
 =cut
 
@@ -235,7 +237,6 @@ sub get_forum_list {
     my $created_at = $forum_tmp->{'created_at'};
     my $name = $forum_tmp->{'name'};
     my $forum_obj = Net::Disqus::Forum->new( 
-                    id => $id,
                     created_at => $created_at,
                     shortname => $shortname,
                     name => $name,
@@ -307,7 +308,37 @@ A list of L<Net::Disqus::Thread> objects belonging to the given forum.
 
 =cut 
 sub get_thread_list {
+  my $self = shift;
+  my @int_list; # list of Net::Disqus::Thread objects to return
+  # GET the api url
+  my $api_method = 'get_thread_list';
+  my $request_url = $APIurl .  $api_method . '/?user_api_key=' . $self->user_api_key() . '&forum_api_key=' . $self->forum_api_key;
 
+  my $thread_array = _GET_request($request_url);
+  foreach my $thread_tmp ( @$thread_array ) {
+    my $forum = $thread_tmp->{'forum'};
+    my $created_at = $thread_tmp->{'created_at'};
+    my $identifier = $thread_tmp->{'identifier'};
+    my $url = $thread_tmp->{'url'};
+    my $slug = $thread_tmp->{'slug'};
+    my $id = $thread_tmp->{'id'};
+    my $title = $thread_tmp->{'title'};
+    my $allow_comments = eval { $thread_tmp->{'allow_comments'} };
+    my $hidden = eval { $thread_tmp->{'hidden'} };
+    my $forum_obj = Net::Disqus::Thread->new( 
+                    forum => $forum,
+                    created_at => $created_at,
+                    identifier => $identifier,
+                    url => $url,
+                    slug => $slug,
+                    id => $id,
+                    title => $title,
+                    allow_comments => $allow_comments,
+                    hidden => $hidden,
+                    );
+    push @int_list, $forum_obj;
+  }
+  return @int_list;
 }
 
 =head2 get_num_posts

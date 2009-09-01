@@ -30,7 +30,10 @@ my $forum_key = $ARGV[1];
 my $forum_id = $ARGV[2];
 
 
-my $main_obj = Net::Disqus->new( user_api_key=> $user_key );
+my $main_obj = Net::Disqus->new( 
+                                 user_api_key=> $user_key,
+                                 forum_api_key=> $forum_key,
+                            );
 
 print Dumper $main_obj;
 
@@ -45,3 +48,7 @@ my $forum_api_key = $main_obj->get_forum_api_key($forum_id);
 
 print "$forum_api_key \n";
 
+
+my @thread_list = $main_obj->get_thread_list($forum_key);
+
+print Dumper @thread_list;
