@@ -29,9 +29,9 @@ into my website instead of loading them via JavaScript
     my $foo = Net::Disqus->new();
 
 
-=head1 API method Functions
+=head1 API METHODS
 
-=head2 C<create_post>
+=head2 create_post
 
 =over 2
 
@@ -84,7 +84,7 @@ sub create_post {
 
 }
 
-=head2 C<get_forum_list>
+=head2 get_forum_list
 
 =over 2
 
@@ -107,7 +107,7 @@ sub get_forum_list {
 
 }
 
-=head2 C<get_forum_api_key>
+=head2 get_forum_api_key
 
 =over 2
 
@@ -140,7 +140,7 @@ sub get_forum_api_key {
 
 }
 
-=head2 C<get_thread_list>
+=head2 get_thread_list
 
 =over 2
 
@@ -165,7 +165,7 @@ sub get_thread_list {
 
 }
 
-=head2 C<get_num_posts>
+=head2 get_num_posts
 
 =over 2
 
@@ -200,7 +200,7 @@ sub get_num_posts {
 
 }
 
-=head2 C<get_thread_by_url>
+=head2 get_thread_by_url
 
 =over 2
 
@@ -241,7 +241,7 @@ sub get_thread_by_url {
 
 }
 
-=head2 C<get_thread_posts>
+=head2 get_thread_posts
 
 =over 2
 
@@ -276,7 +276,7 @@ sub get_thread_posts {
 
 }
 
-=head2 C<thread_by_identifier>
+=head2 thread_by_identifier
 
 =over 2
 
@@ -321,7 +321,7 @@ sub thread_by_identifier {
 
 }
 
-=head2 C<update_thread>
+=head2 update_thread
 
 =over 2
 
