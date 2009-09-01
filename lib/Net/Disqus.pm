@@ -3,6 +3,28 @@ package Net::Disqus;
 use warnings;
 use strict;
 
+## imports
+use HTTP::Request::Common;
+use LWP::UserAgent;
+use Carp;
+use JSON::Any;
+use Config::Simple;
+
+## Disqus imports
+use Net::Disqus::Author;
+use Net::Disqus::Thread;
+use Net::Disqus::Forum;
+use Net::Disqus::Post;
+
+## globals
+my $APIurl = 'http://disqus.com/api/';
+my $success;
+my $code;
+my $message;
+my $ua = LWP::UserAgent->new;
+my $user_api_key; #TODO get from config::simple?
+my $forum_api_key; #TODO get from config::simple?
+
 =head1 NAME
 
 Net::Disqus - A OOP interface to the public Disqus API
@@ -28,6 +50,56 @@ into my website instead of loading them via JavaScript
 
     my $foo = Net::Disqus->new();
 
+=head1 FUNCTIONS
+
+=head2 new
+
+Create a new Net::Disqus::Author object
+
+=cut
+
+sub new {
+  my $invoker = shift;
+  my $class = ref($invoker) || $invoker;
+  my $self = {
+        # attributes go here
+        user_api_key    => '',
+        forum_api_key    => '',
+        @_, # override attributes
+  };
+  bless $self, $class;
+  return $self;
+}
+
+=head1 ATTRIBUTES
+
+=head2 user_api_key
+
+The key used to access the API
+
+=cut
+
+sub user_api_key {
+        my $self = shift;
+        if (@_) {
+        $self->{'user_api_key'}= shift;
+        }
+        return $self->{'user_api_key'};
+}
+
+=head2 forum_api_key
+
+The forum key used to access the API
+
+=cut
+
+sub forum_api_key {
+        my $self = shift;
+        if (@_) {
+        $self->{'forum_api_key'}= shift;
+        }
+        return $self->{'forum_api_key'};
+}
 
 =head1 API METHODS
 
@@ -104,7 +176,25 @@ A list of L<Net::Disqus::Forum objects> the user owns.
 
 =cut
 sub get_forum_list {
-
+  my $self = shift;
+  my @int_list;
+  # GET the api url
+  my $api_method = 'get_forum_list';
+  my $request_url = $APIurl .  $api_method . '/?user_api_key=' . $self->user_api_key();
+  print "request_url: $request_url\n";
+  my $response = $ua->request(GET $request_url);
+  if ($response->is_success) {
+    my $response_object = JSON::Any->jsonToObj($response->content());
+    # TODO push into forum list objects
+    return $response_object;
+  } else {
+    my $status = $response->status_line();
+    my $response = JSON::Any->jsonToObj($response->content());
+    my $success = eval ($$response{'succeeded'});
+    my $code = $$response{'code'};
+    my $message = $$response{'message'};
+    croak "request failed: status=$status, code=$code, message=$message\n";
+  }
 }
 
 =head2 get_forum_api_key
