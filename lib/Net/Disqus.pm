@@ -27,6 +27,51 @@ my $ua = LWP::UserAgent->new;
 my $user_api_key; #TODO get from config::simple?
 my $forum_api_key; #TODO get from config::simple?
 
+
+## private subs
+sub _GET_request($) {
+  # this code returns the json object after a GET request
+  my $url = shift;
+  my $response_object;
+  my $response = $ua->request(GET $url);
+  if ($response->is_success) {
+    $response_object = JSON::Any->from_json($response->content());
+    $message = $response_object->{'message'};
+    return $message;
+  } else {
+    my $status = $response->status_line();
+    my $response = JSON::Any->jsonToObj($response->content());
+    my $success = eval ($$response{'succeeded'});
+    my $code = $$response{'code'};
+    my $message = $$response{'message'};
+    croak "request failed: status=$status, code=$code, message=$message\n";
+  }
+  return $response_object;
+}
+
+sub _POST_request($$) {
+  # this code returns the json object after a POST request
+  my $url = shift;
+  my $response_object;
+  my $status;
+  my $success;
+  my $code;
+  my $message;
+  my $response = $ua->request(GET $url);
+  if ($response->is_success) {
+    $response_object = JSON::Any->from_json($response->content());
+    $message = $$response_object->{'message'};
+    return $message;
+  } else {
+    $status = $response->status_line();
+    $response_object = JSON::Any->jsonToObj($response->content());
+    $success = eval ($$response{'succeeded'});
+    $code = $$response{'code'};
+    $message = $$response{'message'};
+    croak "request failed: status=$status, code=$code, message=$message\n";
+  }
+}
+
 =head1 NAME
 
 Net::Disqus - A OOP interface to the public Disqus API
@@ -179,38 +224,27 @@ A list of L<Net::Disqus::Forum objects> the user owns.
 =cut
 sub get_forum_list {
   my $self = shift;
-  my @int_list;
+  my @int_list; # list of Net::Disqus::Forum objects to return
   # GET the api url
   my $api_method = 'get_forum_list';
   my $request_url = $APIurl .  $api_method . '/?user_api_key=' . $self->user_api_key();
-  my $response = $ua->request(GET $request_url);
-  if ($response->is_success) {
-    my $response_object = eval { JSON::Any->from_json($response->content()) };
-    # TODO push into forum list objects
-    my $forum_array = $response_object->{'message'};
-    foreach my $forum_tmp ( @$forum_array ) {
-      my $shortname = $forum_tmp->{'shortname'};
-      my $id = $forum_tmp->{'id'};
-      my $created_at = $forum_tmp->{'created_at'};
-      my $name = $forum_tmp->{'name'};
-      my $forum_obj = Net::Disqus::Forum->new( 
-                      id => $id,
-                      created_at => $created_at,
-                      shortname => $shortname,
-                      name => $name,
-                      id => $id,
-                      );
-      push @int_list, $forum_obj;
-    }
-    return @int_list;
-  } else {
-    my $status = $response->status_line();
-    my $response = JSON::Any->jsonToObj($response->content());
-    my $success = eval ($$response{'succeeded'});
-    my $code = $$response{'code'};
-    my $message = $$response{'message'};
-    croak "request failed: status=$status, code=$code, message=$message\n";
+
+  my $forum_array = _GET_request($request_url);
+  foreach my $forum_tmp ( @$forum_array ) {
+    my $shortname = $forum_tmp->{'shortname'};
+    my $id = $forum_tmp->{'id'};
+    my $created_at = $forum_tmp->{'created_at'};
+    my $name = $forum_tmp->{'name'};
+    my $forum_obj = Net::Disqus::Forum->new( 
+                    id => $id,
+                    created_at => $created_at,
+                    shortname => $shortname,
+                    name => $name,
+                    id => $id,
+                    );
+    push @int_list, $forum_obj;
   }
+  return @int_list;
 }
 
 =head2 get_forum_api_key
