@@ -16,6 +16,8 @@ use Net::Disqus::Thread;
 use Net::Disqus::Forum;
 use Net::Disqus::Post;
 
+## Debug imports
+use Data::Dumper;
 ## globals
 my $APIurl = 'http://disqus.com/api/';
 my $success;
@@ -181,12 +183,26 @@ sub get_forum_list {
   # GET the api url
   my $api_method = 'get_forum_list';
   my $request_url = $APIurl .  $api_method . '/?user_api_key=' . $self->user_api_key();
-  print "request_url: $request_url\n";
   my $response = $ua->request(GET $request_url);
   if ($response->is_success) {
-    my $response_object = JSON::Any->jsonToObj($response->content());
+    my $response_object = eval { JSON::Any->from_json($response->content()) };
     # TODO push into forum list objects
-    return $response_object;
+    my $forum_array = $response_object->{'message'};
+    foreach my $forum_tmp ( @$forum_array ) {
+      my $shortname = $forum_tmp->{'shortname'};
+      my $id = $forum_tmp->{'id'};
+      my $created_at = $forum_tmp->{'created_at'};
+      my $name = $forum_tmp->{'name'};
+      my $forum_obj = Net::Disqus::Forum->new( 
+                      id => $id,
+                      created_at => $created_at,
+                      shortname => $shortname,
+                      name => $name,
+                      id => $id,
+                      );
+      push @int_list, $forum_obj;
+    }
+    return @int_list;
   } else {
     my $status = $response->status_line();
     my $response = JSON::Any->jsonToObj($response->content());
