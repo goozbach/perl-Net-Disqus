@@ -373,7 +373,8 @@ sub get_num_posts {
 
   my $request = _GET_request($request_url);
 
-  print Dumper $request;
+  print Dumper $request; #TODO  make return pseudo object with thread id
+
 }
 
 =head2 get_thread_by_url
