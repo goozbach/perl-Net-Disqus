@@ -28,6 +28,7 @@ use Data::Dumper;
 my $user_key = $ARGV[0];
 my $forum_key = $ARGV[1];
 my $forum_id = $ARGV[2];
+my $thread_id = $ARGV[3];
 
 
 my $main_obj = Net::Disqus->new( 
@@ -52,3 +53,5 @@ print "$forum_api_key \n";
 my @thread_list = $main_obj->get_thread_list($forum_key);
 
 print Dumper @thread_list;
+
+my $num_posts = $main_obj->get_num_posts($thread_id);

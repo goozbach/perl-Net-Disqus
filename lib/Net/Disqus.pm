@@ -27,17 +27,15 @@ my $forum_api_key; #TODO get from config::simple?
 
 
 ## private subs
-sub _GET_request($) {
-  # this code returns the json object after a GET request
-  my $url = shift;
+sub _parse_request($) {
+  my $response = shift;
   my $response_object;
   my $status;
   my $success;
   my $code;
   my $message;
-  my $response = $ua->request(GET $url);
   if ($response->is_success) {
-    $response_object = JSON::Any->from_json($response->content());
+    my $response_object = JSON::Any->from_json($response->content());
     $message = $response_object->{'message'};
     return $message;
   } else {
@@ -50,27 +48,20 @@ sub _GET_request($) {
   }
 }
 
+sub _GET_request($) {
+  # this code returns the json object after a GET request
+  my $url = shift;
+  my $response = $ua->request(GET $url);
+  my $message = _parse_request($response);
+  return $message;
+}
+
 sub _POST_request($$) {
   # this code returns the json object after a POST request
-  my $url = shift;
-  my $response_object;
-  my $status;
-  my $success;
-  my $code;
-  my $message;
-  my $response = $ua->request(GET $url);
-  if ($response->is_success) {
-    $response_object = JSON::Any->from_json($response->content());
-    $message = $$response_object->{'message'};
-    return $message;
-  } else {
-    $status = $response->status_line();
-    $response_object = JSON::Any->jsonToObj($response->content());
-    $success = eval ($$response{'succeeded'});
-    $code = $$response{'code'};
-    $message = $$response{'message'};
-    croak "request failed: status=$status, code=$code, message=$message\n";
-  }
+  my ($url, %post_opts) = @_;
+  my $response = $ua->request(POST $url, %post_opts);
+  my $message = _parse_request($response);
+  return $message;
 }
 
 =head1 NAME
@@ -373,7 +364,16 @@ An pseudo object mapping each C<thread_id> to two numbers: visible comments, tot
 
 =cut
 sub get_num_posts {
+  my $self = shift;
+  my $thread_id = shift;
+  my $int_obj; # annonmyous object with visible and total comments
+  # GET the api url
+  my $api_method = 'get_num_posts';
+  my $request_url = $APIurl .  $api_method . '/?user_api_key=' . $self->user_api_key() . '&forum_api_key=' . $self->forum_api_key . '&thread_ids=' . $thread_id;
 
+  my $request = _GET_request($request_url);
+
+  print Dumper $request;
 }
 
 =head2 get_thread_by_url
