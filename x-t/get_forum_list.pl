@@ -42,13 +42,14 @@ print "this is the forum list:\n";
 my @forum_list = $main_obj->get_forum_list();
 
 #print $$forum_list{'message'};
+
 my $forum_count = scalar @forum_list;
+
 print "$forum_count\n";
 
 my $forum_api_key = $main_obj->get_forum_api_key($forum_id);
 
 print "$forum_api_key \n";
-
 
 my @thread_list = $main_obj->get_thread_list($forum_key);
 
