@@ -22,8 +22,11 @@ use Data::Dumper;
 ## globals
 my $APIurl = 'http://disqus.com/api/';
 my $ua = LWP::UserAgent->new;
-my $user_api_key; #TODO get from config::simple?
-my $forum_api_key; #TODO get from config::simple?
+my $config = new Config::Simple();
+# $user_api_key = $user = $cfg->param('user_api_key');
+# $forum_api_key = $user = $cfg->param('forum_api_key');
+my $user_api_key;
+my $forum_api_key;
 
 
 ## private subs
@@ -104,8 +107,15 @@ sub new {
         # attributes go here
         user_api_key    => '',
         forum_api_key    => '',
+        config_file => '',
         @_, # override attributes
   };
+  # if there is a config_file option, reset keys
+  if ( $self->{'config_file'} ) {
+      $config->read($self->{'config_file'});
+      $self->{'user_api_key'} = $config->param("user_api_key");
+      $self->{'forum_api_key'} = $config->param("forum_api_key");
+  } 
   bless $self, $class;
   return $self;
 }
@@ -138,6 +148,24 @@ sub forum_api_key {
         $self->{'forum_api_key'}= shift;
         }
         return $self->{'forum_api_key'};
+}
+
+=head2 config_file
+
+The optional config::simple config file to use it should be of the simple format.
+
+It should have user_api_key and forum_api_key defined.
+
+If you supply the config_file it overrides the user_api_key and forum_api_key Attribute
+
+=cut
+
+sub config_file {
+        my $self = shift;
+        if (@_) {
+        $self->{'config_file'}= shift;
+        }
+        return $self->{'config_file'};
 }
 
 =head1 API METHODS

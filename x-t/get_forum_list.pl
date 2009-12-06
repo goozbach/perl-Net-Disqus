@@ -3,7 +3,7 @@
 #
 #         FILE:  get_forum_list.pl
 #
-#        USAGE:  ./get_forum_list.pl  
+#        USAGE:  ./get_forum_list.pl  user_key forum_key forum_id thread_id
 #
 #  DESCRIPTION:  A test script to get the forum list from disqus
 #
@@ -32,9 +32,8 @@ my $thread_id = $ARGV[3];
 
 
 my $main_obj = Net::Disqus->new( 
-                                 user_api_key=> $user_key,
-                                 forum_api_key=> $forum_key,
-                            );
+  config_file => 'sample.config',
+);
 
 print Dumper $main_obj;
 
@@ -43,7 +42,8 @@ print "this is the forum list:\n";
 my @forum_list = $main_obj->get_forum_list();
 
 #print $$forum_list{'message'};
-print "@forum_list\n";
+my $forum_count = scalar @forum_list;
+print "$forum_count\n";
 
 my $forum_api_key = $main_obj->get_forum_api_key($forum_id);
 
