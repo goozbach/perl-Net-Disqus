@@ -156,7 +156,7 @@ sub url {
 
 =head2 identifier
 
-  The user-provided identifier for this thread, as in thread_by_identifier above (if available) 
+  The user-provided identifier for this thread, as in thread_by_identifier above (if available)
 
 =cut
 sub identifier {

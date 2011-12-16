@@ -160,7 +160,7 @@ sub shown {
 
 =head2 is_anonymous
 
-whether the comment was left anonymously, as opposed to a registered Disqus account. 
+whether the comment was left anonymously, as opposed to a registered Disqus account.
 
 =cut
 sub is_anonymous {
@@ -174,7 +174,7 @@ sub is_anonymous {
 =head2 anonymous_author
 
 present only when is_anonymous is true. A L<Net::Disqus::Author> object.
- 
+
 =cut
 sub anonymous_author {
         my $self = shift;

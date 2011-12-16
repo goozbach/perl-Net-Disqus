@@ -125,7 +125,7 @@ sub email_hash {
 
 =head2 has_avatar
 
-  whether the user has an avatar on disqus.com 
+  whether the user has an avatar on disqus.com
 
 =cut
 sub has_avatar {
