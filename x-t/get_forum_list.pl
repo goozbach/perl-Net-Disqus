@@ -1,4 +1,4 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 #===============================================================================
 #
 #         FILE:  get_forum_list.pl
@@ -11,8 +11,8 @@
 # REQUIREMENTS:  ---
 #         BUGS:  ---
 #        NOTES:  ---
-#       AUTHOR:  Derek Carter(), 
-#      COMPANY:  
+#       AUTHOR:  Derek Carter(),
+#      COMPANY:
 #      VERSION:  0.1
 #      CREATED:  08/31/2009 09:16:57 PM
 #     REVISION:  001
@@ -31,7 +31,7 @@ my $forum_id = $ARGV[2];
 my $thread_id = $ARGV[3];
 
 
-my $main_obj = Net::Disqus->new( 
+my $main_obj = Net::Disqus->new(
   config_file => 'sample.config',
 );
 

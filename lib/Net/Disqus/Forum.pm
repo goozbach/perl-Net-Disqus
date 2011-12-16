@@ -84,7 +84,7 @@ sub shortname {
 
 =head2 name
 
-  A string for displaying the forum's full title, like "The Eyeball Kid's Blog". 
+  A string for displaying the forum's full title, like "The Eyeball Kid's Blog".
 
 =cut
 sub name {

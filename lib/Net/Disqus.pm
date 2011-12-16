@@ -115,7 +115,7 @@ sub new {
       $config->read($self->{'config_file'});
       $self->{'user_api_key'} = $config->param("user_api_key");
       $self->{'forum_api_key'} = $config->param("forum_api_key");
-  } 
+  }
   bless $self, $class;
   return $self;
 }
@@ -178,7 +178,7 @@ sub config_file {
 
 =item * Key -- Forum Key
 
-=back 
+=back
 
 =head3 Arguments
 
@@ -218,7 +218,7 @@ sub config_file {
 
 On success, the L<Net::Disqus::Post> object just created.
 
-=cut 
+=cut
 sub create_post {
 
 }
@@ -255,7 +255,7 @@ sub get_forum_list {
     my $id = $forum_tmp->{'id'};
     my $created_at = $forum_tmp->{'created_at'};
     my $name = $forum_tmp->{'name'};
-    my $forum_obj = Net::Disqus::Forum->new( 
+    my $forum_obj = Net::Disqus::Forum->new(
                     created_at => $created_at,
                     shortname => $shortname,
                     name => $name,
@@ -325,7 +325,7 @@ None
 
 A list of L<Net::Disqus::Thread> objects belonging to the given forum.
 
-=cut 
+=cut
 sub get_thread_list {
   my $self = shift;
   my @int_list; # list of Net::Disqus::Thread objects to return
@@ -344,7 +344,7 @@ sub get_thread_list {
     my $title = $thread_tmp->{'title'};
     my $allow_comments = eval { $thread_tmp->{'allow_comments'} };
     my $hidden = eval { $thread_tmp->{'hidden'} };
-    my $forum_obj = Net::Disqus::Thread->new( 
+    my $forum_obj = Net::Disqus::Thread->new(
                     forum => $forum,
                     created_at => $created_at,
                     identifier => $identifier,
@@ -382,7 +382,7 @@ sub get_thread_list {
 
 =item * C<thread_ids> -- A comma delimited list of thread IDs belonging to the forum.
 
-=back 
+=back
 
 =back
 
@@ -441,7 +441,7 @@ sub get_num_posts {
 
 =back
 
-=cut 
+=cut
 sub get_thread_by_url {
 
 }
@@ -511,7 +511,7 @@ sub get_thread_posts {
 
 =head3 Returns
 
-An pseudo object with two keys: 
+An pseudo object with two keys:
 
 =over 2
 
@@ -564,7 +564,7 @@ sub thread_by_identifier {
 
 =back
 
-=back 
+=back
 
 =head1 AUTHOR
 
