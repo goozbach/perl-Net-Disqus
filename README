@@ -1,45 +1,6 @@
 This Perl module provides an OOP interface to the http://www.disqus.com/ API.
 
-Documentation
-  You can find the documentation for this module in a couple of files:
+This module, as it was never finished, is now deprecated.
 
-    * Disqus.pod -- This file describes the data model, and the API functions in one place.
+The CPAN module located [here](http://search.cpan.org/~madcat/Net-Disqus-1.19/lib/Net/Disqus.pm) should serve your needs.
 
-    * INSTALL -- This file provides the installation instructions.
-
-    * Each module, and sub-module's perldoc page describes the corresponding piece of the overall architecture.
-
-      * perldoc Net::Disqus
-
-      * perldoc Net::Disqus::Author
-
-      * perldoc Net::Disqus::Post
-
-      * perldoc Net::Disqus::Thread
-
-      * perldoc Net::Disqus::Forum
-
-  You can find more information from these sources:
-
-    * The Disqus web page -- <http://www.disqus.com/>
-
-    * The Disqus main API documentation -- <http://wiki.disqus.net/API>
-
-    * This module's CPAN page -- <http://search.cpan.org/search?query=Net%3A%3ADisqus&mode=all>
-
-    * This module's github wiki -- <http://wiki.github.com/goozbach/perl-Net-Disqus>
-
-    * This module's github issue tracker -- <http://github.com/goozbach/perl-Net-Disqus/issues>
-
-COPYRIGHT & LICENSE
-
-Copyright 2009 Derek Carter, all rights reserved.
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of either:
-
-* the GNU General Public License as published by the Free
-Software Foundation; either version 1, or (at your option) any
-later version, or
-
-* the Artistic License version 2.0.
